@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Matriks Enjin Carian Komprehensif Keseluruhan Jenama & Model Motherboard PC</title>
+    <!-- Menggunakan Tailwind CSS untuk antaramuka moden & responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts untuk tipografi yang kemas -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar untuk estetik cyberpunk/tech theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-950">
+
+    <!-- Header / Navigasi -->
+    <header class="border-b border-slate-800/80 bg-slate-900/40 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-br from-indigo-500 via-cyan-500 to-emerald-500 p-2.5 rounded-xl text-slate-950 font-black text-2xl shadow-xl shadow-cyan-500/10">
+                    🧩
+                </div>
+                <div>
+                    <h1 class="text-2xl font-black tracking-tight bg-gradient-to-r bg-clip-text text-transparent from-white via-slate-200 to-slate-400">TechSocket <span class="text-cyan-400 font-bold">Ultra</span></h1>
+                    <p class="text-xs text-slate-400 font-medium">Arkib Matriks Kompatibiliti Silang: Enjin Carian Pintar Soket, Jenama & Siri Model Penuh</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 text-xs font-semibold text-cyan-400 bg-cyan-950/50 px-4 py-2 rounded-xl border border-cyan-800/40 shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                Mod Enjin Carian Hibrid Bersepadu
+            </div>
+        </div>
+    </header>
+
+    <!-- Kandungan Utama -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
+        
+        <!-- Bahagian Kiri: Panel Kawalan Carian -->
+        <section class="w-full lg:w-1/3 flex flex-col gap-6">
+            <div class="bg-slate-900/60 p-6 rounded-2xl border border-slate-800/80 shadow-xl backdrop-blur-sm">
+                <h2 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                    <span class="text-cyan-400">🔍</span> Carian Universal Perkakasan
+                </h2>
+                <p class="text-slate-400 text-xs mb-6 leading-relaxed">
+                    Sistem kini menyokong carian pelbagai hala. Anda boleh memasukkan <strong>Kod Soket</strong> (cth: 1155), <strong>Nama Jenama</strong> (cth: ASUS, MSI), atau <strong>Siri Model</strong> (cth: Tomahawk, ROG, Steel Legend).
+                </p>
+
+                <!-- Kotak Input Carian -->
+                <div class="relative mb-5">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Taip soket, brand, atau model papan induk..." 
+                        class="w-full pl-5 pr-12 py-3.5 bg-slate-950 border border-slate-800 rounded-xl text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all shadow-inner text-base font-mono font-medium"
+                        onkeyup="checkEnter(event)"
+                    >
+                    <button 
+                        onclick="performSearch()"
+                        class="absolute right-2.5 top-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold px-4 py-1.5 rounded-lg transition-all text-xs tracking-wide shadow-md shadow-cyan-500/10"
+                    >
+                        CARIAN
+                    </button>
+                </div>
+
+                <!-- Mesej Ralat Kotak Pemberitahuan Tersuai -->
+                <div id="notificationBox" class="hidden mb-4 p-3.5 rounded-xl border bg-amber-500/10 border-amber-500/20 text-amber-400 text-xs flex items-start gap-2.5 animate-fadeIn">
+                    <span class="text-sm mt-0.5">⚠️</span>
+                    <span id="notificationMessage" class="leading-relaxed"></span>
+                </div>
+
+                <div class="flex gap-2">
+                    <button onclick="clearSearch()" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold border border-slate-700/50 transition-colors">
+                        Kosongkan Input
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bahagian Kanan: Paparan Dinamik Hasil Penapisan Komprehensif -->
+        <section class="w-full lg:w-2/3 flex flex-col gap-6">
+            
+            <!-- Keadaan Sedia Kosong (Default View) -->
+            <div id="emptyState" class="flex flex-col items-center justify-center text-center py-24 px-6 border-2 border-dashed border-slate-800 rounded-3xl bg-slate-900/10 backdrop-blur-sm">
+                <div class="w-16 h-16 bg-slate-900 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-slate-800 shadow-inner">🎯</div>
+                <h3 class="text-xl font-bold text-slate-200">Sistem Sedia Imbas Perkakasan</h3>
+                <p class="text-slate-500 text-sm max-w-md mx-auto mt-2 leading-relaxed">
+                    Masukkan sebarang maklumat peranti komputer di bahagian kiri. Anda boleh mencari jenama seperti <span class="text-cyan-400 font-bold">ASUS</span> untuk melihat seluruh model mereka, atau kod spesifik model untuk melihat sokongan soket dan CPU.
+                </p>
+            </div>
+
+            <!-- Ruang Keputusan Carian Utama (Hidden Secara Asal) -->
+            <div id="resultsSection" class="hidden space-y-6">
+                
+                <!-- Kontainer Dinamik Hasil Sockets/Brands -->
+                <div id="dynamicResultsContainer" class="space-y-8">
+                    <!-- Kandungan dijana dinamik menggunakan JavaScript -->
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-900 py-6 text-center text-xs text-slate-500 bg-slate-950/60 backdrop-blur-sm">
+        <p>&copy; TechSocket Ultra Pro - Ekosistem Arkib Kompatibiliti Perkakasan Komputer Desktop Global.</p>
+    </footer>
+
+    <!-- Logik Sistem Aplikasi (JavaScript) -->
+    <script>
+        // Pangkalan data tempatan komprehensif mengandungi senarai model pasaran dari era lama hingga terkini dengan ASUS yang dikemas kini
+        const socketDatabase = {
+            "775": {
+                name: "Intel LGA 775 (Socket T)",
+                era: "Intel Retro Klasik / Warisan Legacy",
+                desc: "Soket ikonik legenda terpanjang Intel yang memperkenalkan perpindahan reka bina pin ke papan induk (LGA) untuk siri Pentium dan dwi/empat teras terawal.",
+                chipsets: "G31, G41, P31, P35, P45, X38, X48, 965P, 945G",
+                ram: "DDR2 / DDR3 Hybrid",
+                cpuSupport: "Intel Pentium 4, Pentium D, Core 2 Duo (E8400), Core 2 Quad (Q6600, Q9550), Core 2 Extreme (QX9770).",
+                brands: [
+                    { name: "ASUS", models: ["P5Q Deluxe", "P5K PRO", "P5G41T-M LX", "Striker II Formula", "P5B Deluxe", "P5N-E SLI", "P5KPL-AM", "P5Q-E", "P5Q3", "P5WD2 Premium", "ROG Rampage Extreme"] },
+                    { name: "GIGABYTE", models: ["GA-EP45-UD3R", "GA-G41MT-S2", "GA-X48-DQ6", "GA-P35-DS3R", "GA-965P-DS3", "GA-G31M-ES2L", "GA-EP45-DS3R", "GA-X38-DQ6", "GA-P45-UD3L"] },
+                    { name: "MSI", models: ["P45 Platinum", "G41M-P33 Combo", "P35 Neo2-FR", "P45 Neo3", "G31M-P21", "P43 Neo-F", "X48 Platinum", "G41M-P26", "P45 Neo-F"] },
+                    { name: "ASROCK", models: ["G41M-VS3 R2.0", "4CoreDual-VSTA", "P45DE", "G31M-GS", "P43ME", "775i65G", "G41M-S3", "P45TS", "Penryn1600SLI"] }
+                ]
+            },
+            "1156": {
+                name: "Intel LGA 1156 (Socket H1)",
+                era: "Intel Core Generasi Pertama (Nehalem)",
+                desc: "Soket peluncuran awal penjenamaan rasmi keluarga Core i3, i5, dan i7 di pasaran komputer global.",
+                chipsets: "H55, H57, P55, Q57",
+                ram: "DDR3 Sahaja",
+                cpuSupport: "Intel Core i3 (siri 500), Core i5 (i5-750), Core i7 (i7-860) Generasi Pertama serta siri server Intel Xeon X3440.",
+                brands: [
+                    { name: "ASUS", models: ["P7P55D-E PRO", "Sabertooth 55i", "P7H55-M LX", "ROG Maximus III Formula", "P7P55D Deluxe", "P7H55-M PRO", "P7P55-M", "P7H55-M LE", "P7P55D-E Premium"] },
+                    { name: "GIGABYTE", models: ["GA-P55-UD3L", "GA-P55A-UD7", "GA-H55M-S2V", "GA-H55M-UD2H", "GA-P55-USB3", "GA-H57M-USB3", "GA-P55A-UD3", "GA-H55M-USB3"] },
+                    { name: "MSI", models: ["P55-GD65", "Big Bang-Fuzion", "H55M-E33", "P55-CD53", "H55M-P31", "P55A-G55", "H55M-ED55", "P55-GD80"] },
+                    { name: "EVGA", models: ["EVGA P55 Classified", "EVGA P55 FTW", "EVGA H55 Sleek", "EVGA P55 Micro", "EVGA P55 LE"] }
+                ]
+            },
+            "1155": {
+                name: "Intel LGA 1155 (Socket H2)",
+                era: "Intel Era Emas Sandy Bridge & Ivy Bridge",
+                desc: "Soket dwi-generasi paling stabil dalam sejarah PC, memacu kejayaan cip overclocking legenda melalui seni bina 32nm and 22nm.",
+                chipsets: "H61, B75, H77, Z77, P67, Z68",
+                ram: "DDR3 Sahaja",
+                cpuSupport: "Intel Core i7-2600K, i5-2500K, i7-3770K, i5-3470, i3-3220 serta Xeon E3-1230v2.",
+                brands: [
+                    { name: "ASUS", models: ["P8Z77-V PRO", "Sabertooth Z77", "P8H61-M LX3 PLUS R2.0", "P8B75-M LE", "ROG Maximus V Gene", "P8Z68-V PRO", "P8P67 PRO", "P8H77-M", "P8Z77-M", "ROG Maximus V Extreme", "P8B75-M LX", "P8H77-V"] },
+                    { name: "GIGABYTE", models: ["GA-Z77X-UD3H", "GA-B75M-D3H", "GA-H61M-DS2", "GA-Z68MA-D2H-B3", "G1.Sniper 3", "GA-Z77-D3H", "GA-H77M-D3H", "GA-P67A-UD3R", "GA-Z77X-D3H", "GA-B75M-HD3", "GA-H61M-S2P"] },
+                    { name: "MSI", models: ["Z77A-GD65 Gaming", "H61M-P31 (G3)", "B75MA-P45", "Z68A-GD55", "ZH77A-G43", "Z77A-G45", "B75MA-E33", "H61M-E33", "Z77A-G43 Gaming", "B75A-G43"] },
+                    { name: "ASROCK", models: ["Z77 Extreme4", "H61M-VS", "B75 Pro3", "Z68 Extreme3 Gen3", "H77 Pro4/MVP", "Z77 Pro3", "H61M-HVS", "Z77 Extreme6", "B75M-GL R2.0", "H61M-VG4"] }
+                ]
+            },
+            "1150": {
+                name: "Intel LGA 1150 (Socket H3)",
+                era: "Intel Generasi Ke-4 & Ke-5 (Haswell / Broadwell)",
+                desc: "Soket yang menggerakkan pemproses Core Haswell lengkap bersama seni bina FIVR (Fully Integrated Voltage Regulator) terbina di dalam CPU.",
+                chipsets: "H81, B85, H87, Z87, H97, Z97",
+                ram: "DDR3 Sahaja",
+                cpuSupport: "Intel Core i7-4790K, i5-4460, i3-4130, Xeon E3-1231v3.",
+                brands: [
+                    { name: "ASUS", models: ["H81M-K", "B85M-G", "Z97-A PRO", "ROG Maximus VII Hero", "Sabertooth Z97 Mark 1", "H81M-E", "B85-PRO GAMING", "Z87-A", "H81M-PLUS", "Z97-PRO WIFI", "B85M-E", "ROG Maximus VI Extreme", "Z97-PRO GAMING"] },
+                    { name: "MSI", models: ["H81M-P33", "Z97 GAMING 5", "B85-G43 Gaming", "H97 PC Mate", "Z97 XPOWER AC", "B85M-E45", "H81M-E33", "Z97-G43", "B85M-G43", "H97 GAMING 3", "H81M-P33 V2"] },
+                    { name: "GIGABYTE", models: ["GA-H81M-S2PV", "G1.Sniper B5", "GA-Z97X-Gaming 3", "GA-B85M-HD3", "GA-H97M-D3H", "GA-Z87-HD3", "GA-H81M-DS2", "GA-Z97-D3H", "GA-B85M-D3H", "GA-H81M-H", "GA-Z97X-UD3H"] },
+                    { name: "ASROCK", models: ["Z97 Extreme4", "H81M-HDS", "B85M Pro4", "Fatal1ty Z97 Killer", "H97 Pro4", "Z87 Extreme4", "H81M-VG4 R2.0", "B85M-HDS", "Z97 Anniversary", "H97M Pro4"] }
+                ]
+            },
+            "1151": {
+                name: "Intel LGA 1151 (Socket H4)",
+                era: "Intel Era Pertengahan DDR4 (Gen 6 sehingga Gen 9)",
+                desc: "Soket dwi-fasa. Papan siri 100/200 dikunci untuk Gen 6/7, manakala papan litar siri 300 wajib digunakan untuk Gen 8/9 Coffee Lake.",
+                chipsets: "H110, B150, B250, Z270, H310, B360, B365, Z370, Z390",
+                ram: "DDR4 Sahaja",
+                cpuSupport: "Intel Core i7-6700K, i7-7700K, i7-8700K, i9-9900K, i5-9400F, i3-9100F.",
+                brands: [
+                    { name: "ASUS", models: ["ROG Maximus X Hero (Z370)", "PRIME Z390-A", "TUF Z270 Mark 1", "PRIME B360M-A", "H110M-K", "ROG Strix B360-F Gaming", "PRIME B250M-A", "Z170-A", "TUF B365M-PLUS GAMING", "H110M-D", "ROG Strix Z390-F Gaming", "ROG Maximus XI Formula"] },
+                    { name: "GIGABYTE", models: ["Z390 AORUS Master", "GA-B250M-DS3H", "B365M DS3H", "Z170X-Gaming 7", "H310M DS2V", "B360M D3H", "Z270X-Ultra Gaming", "Z390 AORUS Elite", "H110M-H", "B365M AORUS Elite"] },
+                    { name: "MSI", models: ["MPG Z390 GAMING EDGE AC", "MAG B365M MORTAR", "Z270 GAMING M7", "H110M PRO-VD", "B250M GAMING PRO", "Z370-A PRO", "H310M PRO-VDH", "B360M MORTAR", "Z170A GAMING M5", "H110M ECO"] },
+                    { name: "ASROCK", models: ["B365M Steel Legend", "Z390 Taichi", "H310M-HDV", "Fatal1ty Z170 Gaming K6", "B250M-HDV", "Z270 Pro4", "H110M-DGS", "B360M Pro4", "Z390 Pro4", "H370M-HDV"] }
+                ]
+            },
+            "1200": {
+                name: "Intel LGA 1200",
+                era: "Intel Moden 14nm Akhir (Gen 10 & 11)",
+                desc: "Soket yang ditambah bilangan pin fizikal bagi menampung keperluan aliran arus elektrik pemprosesan teras tinggi sehingga 10-Teras fizikal desktop.",
+                chipsets: "H410, B460, Z490, H510, B560, Z590",
+                ram: "DDR4 Sahaja",
+                cpuSupport: "Intel Core i9-10900K, i5-10400F, i7-11700K, i5-11400F.",
+                brands: [
+                    { name: "ASUS", models: ["ROG Strix Z490-E Gaming", "PRIME B560M-A", "TUF Gaming Z590-Plus WiFi", "PRIME H510M-E", "ROG Strix B560-F Gaming", "TUF Gaming B460M-Plus", "PRIME H410M-E", "PRIME Z590-P", "ROG Maximus XII Hero", "TUF Gaming B560-Plus WiFi"] },
+                    { name: "MSI", models: ["MAG B560 TOMAHAWK WIFI", "MAG B460M MORTAR", "MPG Z590 GAMING EDGE", "H410M-A PRO", "B560M PRO-VDH", "Z490-A PRO", "MPG Z490 GAMING PLUS", "MAG B560M BAZOOKA", "H510M-A PRO"] },
+                    { name: "GIGABYTE", models: ["Z590 AORUS Master", "Z490 Vision D", "B460M DS3H AC", "H510M S2H", "B560M AORUS PRO", "Z490 UD", "B460M AORUS ELITE", "H410M S2H", "Z590 UD AC", "B560M DS3H AC"] },
+                    { name: "COLORFUL", models: ["CVN Z590M GAMING PRO V20", "Battle-AX H510M-M.2", "CVN B560M GAMING FROZEN", "Battle-AX B460M-D", "CVN Z490 GAMING PRO", "Battle-AX H410M-M.2"] }
+                ]
+            },
+            "1700": {
+                name: "Intel LGA 1700",
+                era: "Intel Era Moden Seni Bina Hibrid (Gen 12 sehingga Gen 14)",
+                desc: "Soket berbentuk segi empat bujur panjang yang memperkenalkan perubahan revolusi struktur gabungan Performance Cores dan Efficient Cores Intel.",
+                chipsets: "H610, B660, B760, Z690, Z790",
+                ram: "DDR4 / DDR5 Dual-Standard Varian",
+                cpuSupport: "Intel Core i5-12400F, i7-13700K, i9-14900K, i5-14400F.",
+                brands: [
+                    { name: "ASUS", models: ["ROG Maximus Z790 Hero", "TUF Gaming B760-Plus WiFi", "PRIME H610M-K D4", "ROG Strix Z690-E Gaming", "PRIME B660M-A D4", "TUF Gaming Z790-Plus DDR4", "ROG Strix B760-F Gaming", "PRIME Z790-P WIFI", "TUF Gaming B660M-Plus WiFi", "PRIME H610M-E DDR4", "ProArt Z790-CREATOR WIFI"] },
+                    { name: "GIGABYTE", models: ["Z790 AORUS Elite AX", "B760M DS3H AX", "Z690 UD DDR4", "B660M AORUS Pro", "H610M S2H DDR4", "Z790 UD AC", "B760 AORUS ELITE AX", "B660M DS3H AX", "Z790 AERO G", "H610M H V2"] },
+                    { name: "MSI", models: ["MAG Z790 TOMAHAWK WIFI", "MAG B660M MORTAR", "PRO Z690-A DDR4", "MPG Z790 CARBON WIFI", "PRO B760M-P", "H610M Bomber", "MPG Z690 FORCE WIFI", "MAG B760M MORTAR WIFI", "PRO B660M-E DDR4", "B760 GAMING PLUS WIFI"] },
+                    { name: "ASROCK", models: ["Z790 Taichi Lite", "B760M Steel Legend WiFi", "H610M-HDV/M.2 R2.0", "B660M Pro RS", "Z690 Pro4", "B760 Pro4", "Z790 Pro4", "B760M-HDV/M.2 D4", "Z690 Phantom Gaming 4"] }
+                ]
+            },
+            "1851": {
+                name: "Intel LGA 1851",
+                era: "Intel Era AI Core Ultra Arus Perdana Terkini",
+                desc: "Soket desktop Intel paling terkini di pasaran yang dikhususkan sepenuhnya untuk memfokuskan kecekapan kuasa tinggi and unit pemprosesan AI NPU.",
+                chipsets: "Z890, B860, H810",
+                ram: "DDR5 Sahaja",
+                cpuSupport: "Intel Core Ultra 9 285K, Core Ultra 7 265K, Core Ultra 5 245K.",
+                brands: [
+                    { name: "ASUS", models: ["ROG Maximus Z890 Hero", "ProArt Z890-CREATOR WIFI", "TUF Gaming Z890-Plus WiFi", "ROG Strix Z890-F Gaming", "PRIME Z890-P WIFI", "ROG Strix B860-G Gaming WiFi", "PRIME B860M-A WIFI", "ROG Strix Z890-A Gaming WiFi"] },
+                    { name: "MSI", models: ["MAG Z890 TOMAHAWK WIFI", "MEG Z890 ACE", "PRO Z890-A WIFI", "MPG Z890 CARBON WIFI", "PRO B860M-P", "MEG Z890 UNIFY-X", "MAG B860 MORTAR WIFI"] },
+                    { name: "GIGABYTE", models: ["Z890 AORUS Master", "Z890 AORUS ELITE WIFI7", "Z890 EAGLE AX", "Z890 UD", "B860M AORUS ELITE", "Z890 AERO D", "B860M DS3H WIFI"] },
+                    { name: "ASROCK", models: ["Z890 Taichi WiFi", "Z890 Steel Legend WiFi", "Z890 Pro RS White", "Z890 LiveMixer", "B860M Pro RS", "Z890 Lightning WiFi", "B860M Steel Legend"] }
+                ]
+            },
+            "AM3+": {
+                name: "AMD Socket AM3 / AM3+ (PGA 942)",
+                era: "AMD Era Siri FX Bulldozer Klasik",
+                desc: "Soket jenis tapak pin fizikal lubang warna hitam (AM3+) yang dibina bagi membekalkan hantaran elektrik mentah yang besar untuk siri CPU berfrekuensi tinggi AMD FX.",
+                chipsets: "AMD 760G, 970, 990FX, 990X",
+                ram: "DDR3 Sahaja",
+                cpuSupport: "AMD FX-8350, FX-6300, FX-9590 gergasi 220W, Phenom II X6 1090T.",
+                brands: [
+                    { name: "ASUS", models: ["Sabertooth 990FX R2.0", "ROG Crosshair V Formula-Z", "M5A97 R2.0", "M5A78L-M LX3", "M5A99FX PRO R2.0", "M5A78L-M PLUS/USB3", "M5A97 LE R2.0", "M5A99X EVO"] },
+                    { name: "GIGABYTE", models: ["GA-990FXA-UD3", "GA-78LMT-USB3", "GA-970A-UD3P", "GA-990FXA-UD7", "GA-78LMT-S2", "GA-970A-DS3P", "GA-78LMT-USB3 R2"] },
+                    { name: "MSI", models: ["MSI 970 GAMING", "990FXA-GD80", "760GMA-P34", "970A-G43", "990FXA GAMING", "970A-G46", "760GM-P23 (FX)"] },
+                    { name: "ASROCK", models: ["990FX Extreme9", "970 Extreme4", "980DE3/U3S3 R2.0", "970 Pro3 R2.0", "990FX Extreme4", "970M PRO3"] }
+                ]
+            },
+            "AM4": {
+                name: "AMD Socket AM4",
+                era: "AMD Era Revolusi Kebangkitan Gergasi Ryzen",
+                desc: "Soket pin jenis PGA paling berjaya AMD yang mengekalkan keserasian rentas generasi daripada cip Ryzen pertama sehingga kemuncak teknologi 3D V-Cache.",
+                chipsets: "A320, B350, B450, B550, X570, X470",
+                ram: "DDR4 Sahaja",
+                cpuSupport: "AMD Ryzen 5 1600, Ryzen 5 3600, Ryzen 5 5600, Ryzen 7 5800X3D, Ryzen 9 5900X.",
+                brands: [
+                    { name: "ASUS", models: ["TUF Gaming B450-Plus", "ROG Strix B550-F Gaming", "PRIME A320M-K", "ROG Crosshair VIII Dark Hero", "TUF Gaming X570-Plus WiFi", "PRIME B550M-A", "PRIME B450M-A", "ROG Strix X470-F Gaming", "TUF Gaming B550M-Plus", "PRIME A520M-K", "ROG Crosshair VIII Hero"] },
+                    { name: "MSI", models: ["B450 TOMAHAWK MAX", "MAG B550M MORTAR WIFI", "B450M PRO-VDH MAX", "MEG X570 UNIFY", "X370 GAMING PRO CARBON", "B550-A PRO", "A320M-A PRO", "B450 GAMING PLUS MAX", "X470 GAMING PLUS", "MAG B550 TOMAHAWK"] },
+                    { name: "ASROCK", models: ["B450M Steel Legend", "X570 Taichi", "B550M Pro4", "A320M-HDV R4.0", "X470 Master SLI", "B550 Phantom Gaming 4", "X370 Killer SLI", "B450 Pro4", "B550M Steel Legend", "A520M-HDV"] },
+                    { name: "GIGABYTE", models: ["B450 AORUS Elite", "B550M AORUS PRO-P", "X570 AORUS Master", "GA-A320M-S2H", "B450M DS3H", "X470 AORUS Gaming 7", "B550 AORUS ELITE AX", "AB350M-Gaming 3", "X570 I AORUS PRO WIFI", "A520M DS3H"] },
+                    { name: "COLORFUL", models: ["CVN B550M GAMING FROZEN V14", "Battle-AX B450M-G", "CVN X570M GAMING PRO", "Battle-AX A320M-M.2", "CVN B450M GAMING V14"] }
+                ]
+            },
+            "AM5": {
+                name: "AMD Socket AM5 (Socket LGA 1718)",
+                era: "AMD Era Terkini Komitmen Jangka Panjang (Hayat Platform sehingga 2029+)",
+                desc: "Soket desktop format reka bentuk grid daratan (LGA) pertama bagi AMD kategori pengguna arus perdana, direka eksklusif untuk kestabilan memori DDR5 penuh.",
+                chipsets: "A620, B650, X670, X870, X870E, B650E, X670E",
+                ram: "DDR5 Sahaja",
+                cpuSupport: "AMD Ryzen 7 7800X3D, Ryzen 7 9800X3D, Ryzen 7 9850X3D, Ryzen 9 9950X3D.",
+                brands: [
+                    { name: "ASUS", models: ["ROG Crosshair X670E Hero", "ROG Strix B650-A Gaming WiFi", "TUF Gaming X670E-Plus WiFi", "ProArt X870E-CREATOR WIFI", "PRIME B650M-A", "ROG Strix X870-E Gaming WiFi", "TUF Gaming B650-PLUS WIFI", "PRIME A620M-K", "ROG Strix B650E-E GAMING WIFI", "TUF Gaming X870-Plus WiFi"] },
+                    { name: "MSI", models: ["MAG B650 TOMAHAWK WIFI", "PRO B650M-A WIFI", "MPG X870E CARBON WIFI", "MEG X870E GODLIKE", "MAG X670E TOMAHAWK WIFI", "B650M GAMING PLUS WIFI", "MPG B650 EDGE WIFI", "PRO A620M-E", "MPG X670E CARBON WIFI"] },
+                    { name: "GIGABYTE", models: ["X870 AORUS ELITE WIFI7", "X670E AORUS MASTER", "B650 AORUS ELITE AX", "B650M GAMING X AX", "A620M GAMING X", "X870E AORUS MASTER", "B650E AORUS TACHYON", "B650M DS3H", "X670 AORUS ELITE AX"] },
+                    { name: "ASROCK", models: ["X870E Taichi", "B650M Steel Legend WiFi", "X670E Pro RS", "A620M Pro RS WiFi", "B650 Pro RS", "X870 Pro RS", "B650M-HDV/M.2", "X670E Taichi Carrara", "B650E Steel Legend"] }
+                ]
+            }
+        };
+
+        // Fungsi Mengesan Butang Enter Pada Papan Kekunci
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        }
+
+        // Fungsi Membersihkan Input
+        function clearSearch() {
+            document.getElementById('searchInput').value = "";
+            document.getElementById('notificationBox').classList.add('hidden');
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('emptyState').classList.remove('hidden');
+        }
+
+        // Fungsi Pengendali Utama Enjin Carian Pintar Hibrid (Soket / Brand / Model)
+        function performSearch() {
+            const queryRaw = document.getElementById('searchInput').value;
+            const query = queryRaw.trim().toUpperCase();
+            
+            const notificationBox = document.getElementById('notificationBox');
+            const resultsSection = document.getElementById('resultsSection');
+            const emptyState = document.getElementById('emptyState');
+            const dynamicResultsContainer = document.getElementById('dynamicResultsContainer');
+
+            // Set semula paparan asal
+            notificationBox.classList.add('hidden');
+            dynamicResultsContainer.innerHTML = "";
+
+            if (!query) {
+                showNotification("Sila taip kata kunci carian (cth: ASUS, Tomahawk, 1155, AM4).");
+                resultsSection.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            let matchedKeys = [];
+            let filterSpecificBrand = null;
+            let searchMethodUsed = "Carian Bersepadu Perkakasan";
+
+            // Senarai nama pengeluar/jenama utama untuk semakan pintar
+            const knownBrands = ["ASUS", "MSI", "GIGABYTE", "ASROCK", "COLORFUL", "EVGA", "INTEL"];
+            const isBrandQuery = knownBrands.includes(query);
+
+            if (isBrandQuery) {
+                filterSpecificBrand = query;
+                searchMethodUsed = `Tapis Mengikut Pengeluar Penuh (${query})`;
+                // Masukkan semua jenis soket yang mengandungi jenama ini
+                for (let key in socketDatabase) {
+                    if (socketDatabase[key].brands.some(b => b.name.toUpperCase() === query)) {
+                        matchedKeys.push(key);
+                    }
+                }
+            } else if (socketDatabase[query]) {
+                // Padanan kunci soket tepat
+                matchedKeys.push(query);
+                searchMethodUsed = "Padanan Kod Soket Tepat";
+            } else {
+                // Imbas teks dalam pangkalan data untuk chipset, nama soket, atau nama model spesifik
+                for (let key in socketDatabase) {
+                    const data = socketDatabase[key];
+                    let isSocketOrChipsetMatch = key.toUpperCase().includes(query) || 
+                                                 data.name.toUpperCase().includes(query) || 
+                                                 data.chipsets.toUpperCase().includes(query);
+                    
+                    if (isSocketOrChipsetMatch) {
+                        matchedKeys.push(key);
+                        searchMethodUsed = "Padanan Kluster Chipset/Soket";
+                    } else {
+                        // Semak padanan model di dalam setiap jenama
+                        for (let brand of data.brands) {
+                            for (let model of brand.models) {
+                                if (model.toUpperCase().includes(query) || query.includes(model.toUpperCase())) {
+                                    if (!matchedKeys.includes(key)) {
+                                        matchedKeys.push(key);
+                                    }
+                                    searchMethodUsed = "Padanan Kata Kunci Siri Model Motherboard";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Memproses pengisian data antaramuka
+            if (matchedKeys.length > 0) {
+                // Bina setiap blok soket yang sepadan secara dinamik ke dalam container utama
+                matchedKeys.forEach(key => {
+                    const data = socketDatabase[key];
+                    
+                    // Blok komponen hub soket
+                    const socketBlock = document.createElement('div');
+                    socketBlock.className = "bg-slate-900/40 p-6 rounded-2xl border border-slate-800/60 shadow-xl space-y-6 relative overflow-hidden";
+                    
+                    // Tapak penapis jenama dalam blok
+                    let brandsHTML = "";
+                    let displayedBrandCount = 0;
+
+                    data.brands.forEach(brand => {
+                        // Jika carian adalah jenama khusus, tapis keluar jenama lain
+                        if (filterSpecificBrand && brand.name.toUpperCase() !== filterSpecificBrand) {
+                            return;
+                        }
+                        
+                        displayedBrandCount++;
+                        let modelsHTML = "";
+                        
+                        brand.models.forEach(model => {
+                            // Berikan efek highlight bersinar jika sepadan dengan input carian model
+                            const isKeywordMatch = query && (model.toUpperCase().includes(query) || query.includes(model.toUpperCase()));
+                            const highlightClass = isKeywordMatch 
+                                ? "bg-amber-500/20 border-amber-500 text-amber-300 font-extrabold shadow-md shadow-amber-500/10 scale-105" 
+                                : "bg-slate-950 border-slate-800 text-slate-300 hover:border-slate-700";
+
+                            modelsHTML += `<span class="inline-block border text-xs px-3 py-1.5 rounded-lg font-mono tracking-tight transition-all ${highlightClass}">${model}</span>`;
+                        });
+
+                        brandsHTML += `
+                            <div class="bg-slate-950/40 p-4 rounded-xl border border-slate-800/50 flex flex-col justify-between group">
+                                <div class="flex items-center justify-between border-b border-slate-800/50 pb-2 mb-3">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-1.5 h-3 bg-cyan-500 rounded-full group-hover:bg-emerald-500 transition-colors"></span>
+                                        <h5 class="text-sm font-extrabold text-white tracking-wide group-hover:text-cyan-400 transition-colors">${brand.name}</h5>
+                                    </div>
+                                    <span class="text-[9px] bg-slate-800/80 border border-slate-700/60 px-2 py-0.5 rounded text-slate-400 font-medium font-mono">${brand.models.length} Model Pilihan</span>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    ${modelsHTML}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    // Jika tiada jenama sepadan dalam kombinasi tapak penapis (safety check)
+                    if (displayedBrandCount === 0) return;
+
+                    socketBlock.innerHTML = `
+                        <!-- Header Soket Hub -->
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-4">
+                            <div>
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="text-[9px] font-black uppercase tracking-wider text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded border border-cyan-500/20">Soket Platform</span>
+                                    <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">${data.era}</span>
+                                </div>
+                                <h3 class="text-xl font-black text-white mt-1">${data.name}</h3>
+                                <p class="text-slate-400 text-xs mt-1 max-w-2xl">${data.desc}</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 text-[11px] bg-slate-950/60 p-3 rounded-xl border border-slate-800/40 min-w-[200px]">
+                                <div>
+                                    <span class="text-slate-500 block text-[9px] font-bold uppercase tracking-wider">Chipset</span>
+                                    <span class="font-bold text-slate-200 font-mono">${data.chipsets}</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-500 block text-[9px] font-bold uppercase tracking-wider">RAM</span>
+                                    <span class="font-bold text-slate-200 font-mono">${data.ram}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Panel Keserasian CPU -->
+                        <div class="bg-slate-950/30 border border-slate-900 p-4 rounded-xl space-y-1">
+                            <span class="text-[10px] font-bold tracking-wider text-emerald-400 flex items-center gap-1.5 uppercase">
+                                <span>📋</span> Senarai Siri Processor yang Disokong (Support):
+                            </span>
+                            <p class="text-slate-300 text-xs font-mono bg-slate-950/40 p-2.5 rounded border border-slate-900">${data.cpuSupport}</p>
+                        </div>
+
+                        <!-- Senarai Kad Jenama & Rangkaian Model Pilihan -->
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Rangkaian Model Pilihan Pasaran Berdasarkan Carian:</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                ${brandsHTML}
+                            </div>
+                        </div>
+                    `;
+
+                    dynamicResultsContainer.appendChild(socketBlock);
+                });
+
+                // Paparkan seksyen keputusan, sembunyikan kotak sedia asal
+                resultsSection.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+            } else {
+                showNotification(`Tiada rekod padanan ditemui bagi kata kunci "${queryRaw}". Anda boleh cari kod soket (cth: 1150), nama brand (cth: MSI), atau siri (cth: ROG).`);
+                resultsSection.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            }
+        }
+
+        // Fungsi Memaparkan Kotak Amaran Notifikasi
+        function showNotification(msg) {
+            const notificationBox = document.getElementById('notificationBox');
+            const notificationMessage = document.getElementById('notificationMessage');
+            notificationMessage.innerText = msg;
+            notificationBox.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+
+
